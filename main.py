@@ -138,8 +138,7 @@ def main(args):
                      recent_size = args.lsvi_recent_size,
                      lamb = args.lsvi_lamb)
 
-    if args.horizon >= 50:
-        args.num_warm_start = 200
+    
 
     for _ in range(args.num_warm_start):
         z = env.reset()
@@ -283,18 +282,13 @@ def main(args):
                         "eval time": eval_time})
 
             
-            av_return=np.mean(list(returns))
             
-            #agent.save_weight(args.temp_path)
-
-            #np.save("{}/counts".format(args.temp_path), counts)
 
             inference_start_time = time.time()
 
             if np.mean(list(returns)) == 1 and not args.variable_latent and not args.dense:
                 break
-            av_reward.append(av_return)
-            #print(len(av_reward))
+            
             
 
 
